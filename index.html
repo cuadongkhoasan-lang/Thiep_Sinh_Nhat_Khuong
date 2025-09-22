@@ -5,32 +5,102 @@
   <title>Thiệp mời sinh nhật</title>
   <style>
     body {
-      font-family: Arial, sans-serif;
-      background: #ffe6f2;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #ffdde1, #ee9ca7);
       text-align: center;
-      padding: 100px;
+      margin: 0;
+      padding: 50px;
     }
+
     .card {
       background: white;
-      border-radius: 12px;
+      border-radius: 16px;
       padding: 40px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.25);
       display: inline-block;
+      animation: fadeIn 2s ease-in-out;
     }
+
     h1 {
       color: #d63384;
+      font-size: 2em;
+      margin-bottom: 10px;
+      animation: colorChange 3s infinite alternate;
+    }
+
+    p {
+      font-size: 18px;
+      margin: 8px 0;
+    }
+
+    img {
+      width: 300px;
+      border-radius: 12px;
+      margin: 15px;
+      transition: transform 0.3s;
+      cursor: pointer;
+    }
+
+    img:hover {
+      transform: scale(1.05) rotate(2deg);
+    }
+
+    /* Countdown style */
+    #countdown {
+      font-size: 22px;
+      font-weight: bold;
+      color: #28a745;
+      margin-top: 15px;
+    }
+
+    /* Keyframes cho hiệu ứng */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes colorChange {
+      0% { color: #d63384; }
+      50% { color: #ff5733; }
+      100% { color: #0099ff; }
     }
   </style>
 </head>
 <body>
   <div class="card">
-    <h1>🎉 Mời bạn đến dự sinh nhật Giang iu 🎂</h1>
-    <p>Thời gian: 21h ngày 27/09/2025</p>
-    <p>Địa điểm: xe khách giường đôi đi Huế 😄</p>
-    <img src="image2.jpg" alt="Ảnh sinh nhật 1" style="width:300px; border-radius:12px; margin:10px;">
-    <img src="images.jpg" alt="Ảnh sinh nhật 2" style="width:300px; border-radius:12px; margin:10px;">
+    <h1>🎉 Mời bạn đến dự sinh nhật tôi 🎂</h1>
+    <p>⏰ Thời gian: 18h ngày 01/10/2025</p>
+    <p>📍 Địa điểm: Nhà tôi 😊</p>
+
+    <!-- Ảnh sinh nhật -->
+    <img src="image%202.jpg" alt="Ảnh sinh nhật 1">
+    <img src="images.jpg" alt="Ảnh sinh nhật 2">
+
+    <!-- Countdown -->
+    <div id="countdown"></div>
   </div>
+
+  <script>
+    // Countdown tới ngày sinh nhật
+    const countDownDate = new Date("Oct 1, 2025 18:00:00").getTime();
+
+    const timer = setInterval(() => {
+      const now = new Date().getTime();
+      const distance = countDownDate - now;
+
+      if (distance < 0) {
+        clearInterval(timer);
+        document.getElementById("countdown").innerHTML = "🎂 Sinh nhật đã đến rồi!";
+      } else {
+        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+        document.getElementById("countdown").innerHTML =
+          `⏳ Còn ${days} ngày ${hours} giờ ${minutes} phút ${seconds} giây nữa 🎁`;
+      }
+    }, 1000);
+  </script>
 </body>
 </html>
-
-
